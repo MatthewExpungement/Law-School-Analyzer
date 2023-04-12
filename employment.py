@@ -48,7 +48,10 @@ def displayEmployment(selected_tab,selected_schools):
     #Add Employed Status
     for ptft in part_time_full_time_types:
         for tes in ['GradSch_FT','Emp_Def','Unemp_NS','Unemp_Seek','Emp_Stat_Unk']:
-            df[tes + "_" + ptft] = 0
+            if(ptft == 'Emp'):
+                df[tes + "_" + ptft] = df[tes]
+            else:
+                df[tes + "_" + ptft] = 0
         for es in employment_status:
             df[es + "_" + ptft + "_Percentage"] = df[es + "_" + ptft]
     #Add Bar Passage Rages
