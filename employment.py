@@ -53,7 +53,7 @@ def displayEmployment(selected_tab,selected_schools):
             else:
                 df[tes + "_" + ptft] = 0
         for es in employment_status:
-            df[es + "_" + ptft + "_Percentage"] = df[es + "_" + ptft]
+            df[es + "_" + ptft + "_Percentage"] = df[es + "_" + ptft] /df['Total_Grads'] * 100
     #Add Bar Passage Rages
     for ptft in part_time_full_time_types:
         df['Bar_' + ptft + '_Percentage'] = df['Bar_' + ptft]/df['Total_Grads'] * 100
