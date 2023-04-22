@@ -17,11 +17,11 @@ def createSingleGraph(df,selected_schools,title,yaxis):
 
 def displayAdmissions(streamlit_tab,selected_schools):
     streamlit_tab.header("Admission Metrics")
-    df = pandas.read_csv('Admissions.csv')
+    df = pandas.read_csv('Data_Files/Admissions.csv')
     df['NumOffers_Percentage'] = df['NumOffers']/df['NumApps'] * 100
     df['NumMatriculants_Percentage_Offers'] = df['NumMatriculants']/df['NumOffers'] * 100
     df['NumMatriculants_Percentage_Applications'] = df['NumMatriculants']/df['NumApps'] * 100
-
+    df['NumOffers_Percentage_Apps'] = df['NumOffers']/df['NumApps'] * 100
 
     # df['Bar_And_JD_Advantage_FTLT'] = df['Bar_FTLT'] + df['JDA_FTLT']
     # df['Bar_And_JD_Advantage_FTLT_Percentage'] = df['Bar_And_JD_Advantage_FTLT'] /df['Total_Grads'] * 100
@@ -58,7 +58,7 @@ def displayAdmissions(streamlit_tab,selected_schools):
     
     streamlit_tab.divider()
 
-    #Number of Acceptance
+    #Number of Accepted Offers
     streamlit_tab.subheader("Acceptance/Matriculants")
     col1,col2 = streamlit_tab.columns(2)
     title = "Accepted Offers by Total Applications"
@@ -67,7 +67,7 @@ def displayAdmissions(streamlit_tab,selected_schools):
     col1.plotly_chart(fig_graphs[0])
     col2.plotly_chart(fig_graphs[1])
     col2.write("*Percentage based on acceptance/total applications")
-    title = "Acceptance by Offers by Total Offers"
+    title = "Accepted offers by Total Offers"
     yaxis = ['NumMatriculants','NumMatriculants_Percentage_Offers']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
     col1.plotly_chart(fig_graphs[0])

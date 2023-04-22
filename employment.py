@@ -20,7 +20,7 @@ def createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis):
 
 def displayEmployment(selected_tab,selected_schools):
     selected_tab.header("Employement Metrics")
-    df = pandas.read_csv('Employment.csv')
+    df = pandas.read_csv('Data_Files/Employment.csv')
     # df['Bar_FTLT_Percentage'] = df['Bar_FTLT']/df['Total_Grads'] * 100
     # df['Bar_And_JD_Advantage_FTLT'] = df['Bar_FTLT'] + df['JDA_FTLT']
     # df['Bar_And_JD_Advantage_FTLT_Percentage'] = df['Bar_And_JD_Advantage_FTLT'] /df['Total_Grads'] * 100

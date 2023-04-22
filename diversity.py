@@ -21,10 +21,12 @@ def createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis):
 
 def displayDiversity(streamlit_tab,selected_schools):
     streamlit_tab.header("Student Diversity")
-    df = pandas.read_csv('Enrollment.csv')
+    df = pandas.read_csv('Data_Files/Enrollment.csv')
     races = ['WhiteJD1','BlackJD1','AsianJD1','HispanicJD1','NatHawJD1','TwoorMoreJD1']
     genders = ['MenJD1','WomenJD1']
     race_genders = []
+
+    #Generate  the proper field names i.e. AsianMenJD1 for all races in first year.
     for race in races:
         for gender in genders:
             race_genders.append(race.replace("JD1","") +  gender)
@@ -41,7 +43,7 @@ def displayDiversity(streamlit_tab,selected_schools):
         df[race_gender+"_Percentage"] = df[race_gender]/df['TotalJD1'] * 100
 
     #Incoming Class by Race - Single School
-    streamlit_tab.subheader("Student Diversity Incoming Class")
+    streamlit_tab.subheader("Student Diversity Incoming Class (Race)")
     race_choices = streamlit_tab.multiselect("Select Race",races,default=races)
     if(len(selected_schools) > 1):
         streamlit_tab.write("You can only have one school selected to use this chart")
@@ -55,7 +57,7 @@ def displayDiversity(streamlit_tab,selected_schools):
         col2.plotly_chart(fig_graphs[1])
 
     #Incoming Class by Gender - Single School
-    streamlit_tab.subheader("Student Diversity Incoming Class")
+    streamlit_tab.subheader("Student Diversity Incoming Class (Gender)")
     if(len(selected_schools) > 1):
         streamlit_tab.write("You can only have one school selected to use this chart")
     else:
@@ -68,7 +70,7 @@ def displayDiversity(streamlit_tab,selected_schools):
         col2.plotly_chart(fig_graphs[1])
 
     #Incoming Class by Race and Gender - Single School
-    streamlit_tab.subheader("Student Diversity Incoming Class")
+    streamlit_tab.subheader("Student Diversity Incoming Class (Race + Gender)")
     race_gender_choices = streamlit_tab.multiselect("Select Race and Gender",race_genders,default=['AsianMenJD1','AsianWomenJD1'])
     if(len(selected_schools) > 1):
         streamlit_tab.write("You can only have one school selected to use this chart")

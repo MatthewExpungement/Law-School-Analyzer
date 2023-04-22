@@ -5,11 +5,13 @@ from employment import displayEmployment
 from admissions import displayAdmissions
 from diversity import displayDiversity
 from ubp import displayBarPassage
+from faculty_diversity import displayFacultyDiversity
+from custom import displayCustom
 
 st.set_page_config(layout='wide')
 st.header("Law School Analyzer")
-admissions_tab,employment_tab,bar_passage_tab,diversity_tab = st.tabs(['Admissions','Employment','Bar Passage','Diversity'])
-school_df = pandas.read_csv('School Information.csv')
+admissions_tab,employment_tab,bar_passage_tab,diversity_tab,faculty_tab,custom_tab = st.tabs(['Admissions','Employment','Bar Passage','Student Diversity','Faculty Diversity','Custom'])
+school_df = pandas.read_csv('Data_Files/School Information.csv')
 #schools = ['University of Hawaii','University of New Mexico']
 schools = school_df['schoolname'].sort_values()
 
@@ -20,3 +22,5 @@ displayEmployment(employment_tab,selected_schools)
 displayAdmissions(admissions_tab,selected_schools)
 displayBarPassage(bar_passage_tab,selected_schools)
 displayDiversity(diversity_tab,selected_schools)
+displayFacultyDiversity(faculty_tab,selected_schools)
+displayCustom(custom_tab,selected_schools)
