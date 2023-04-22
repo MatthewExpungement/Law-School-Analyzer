@@ -18,20 +18,22 @@ def displayCustom(streamlit_tab,selected_schools):
 
         #Even out the years so bar pass start 3 year later and lsat ends 3 years earlier
         years = admissions_df['CalendarYear'].unique()
-        lsat_years = list(years)
-        bar_pass_years = list(years).copy()
-        bar_pass_years.pop(0)
-        bar_pass_years.pop(0)
-        bar_pass_years.pop(0)
-        lsat_years.pop(-1)
-        lsat_years.pop(-1)
-        lsat_years.pop(-1)
+        lsat_years = list(years)[0:-4]
+        bar_pass_years = list(years).copy()[3:-1]
+        lsat_scores = list(admissions_selected_schools_df['LSAT50'])[0:-4]
+        # bar_pass_years.pop(0)
+        # bar_pass_years.pop(0)
+        # bar_pass_years.pop(0)
+        # lsat_years.pop(-1)
+        # lsat_years.pop(-1)
+        # lsat_years.pop(-1)
 
 
-        bar_pass_list = list(ubp_selected_schools_df['avgschoolpasspct']*100)[6:-1]
-        print(bar_pass_list)
-        print(bar_pass_years)
-        print(lsat_years)
+        bar_pass_list = list(ubp_selected_schools_df['avgschoolpasspct']*100)[6:]
+        print(lsat_scores,len(lsat_scores))
+        print(bar_pass_list,len(bar_pass_list))
+        print(bar_pass_years,len(bar_pass_years))
+        print(lsat_years,len(lsat_years))
         # Create figure with secondary x-axis
         # fig = make_subplots(specs=[[{"secondary_y": True}]])
         fig = go.Figure()
