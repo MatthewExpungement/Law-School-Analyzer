@@ -22,12 +22,17 @@ def displayCustom(streamlit_tab,selected_schools):
         bar_pass_years = list(years).copy()
         bar_pass_years.pop(0)
         bar_pass_years.pop(0)
-        bar_pass_years.pop(0)
+
         lsat_years.pop(-1)
         lsat_years.pop(-1)
-        lsat_years.pop(-1)
-        print(ubp_selected_schools_df['UltimateSchoolPassPct']*100)
-        print(ubp_selected_schools_df['avgschoolpasspct']*100)
+
+
+
+        ubp_list = list(ubp_selected_schools_df['avgschoolpasspct']*100)[5:]
+        
+        print(ubp_list)
+        print(bar_pass_years)
+        print(lsat_years)
         # Create figure with secondary x-axis
         # fig = make_subplots(specs=[[{"secondary_y": True}]])
         fig = go.Figure()
@@ -54,7 +59,7 @@ def displayCustom(streamlit_tab,selected_schools):
         )
 
         fig.add_trace(
-            go.Scatter(x=bar_pass_years, y=ubp_selected_schools_df['avgschoolpasspct']*100, name="School Pass Rate", xaxis='x2',yaxis='y2')
+            go.Scatter(x=bar_pass_years, y=ubp_list, name="School Pass Rate", xaxis='x2',yaxis='y2')
         )
         fig.add_trace(
             go.Scatter(x=[2015,2016,2017,2018,2019], y=ubp_selected_schools_df['UltimateSchoolPassPct'].dropna()*100, name="UBP Pass Rate", xaxis='x2',yaxis='y2')
