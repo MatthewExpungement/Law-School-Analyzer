@@ -10,6 +10,8 @@ from custom import displayCustom
 
 st.set_page_config(layout='wide')
 st.header("Law School Analyzer")
+st.write("By Matthew Stubenberg")
+st.write("Innovator in Residence - University of Hawaii William S. Richardson School of Law")
 admissions_tab,employment_tab,bar_passage_tab,diversity_tab,faculty_tab,custom_tab = st.tabs(['Admissions','Employment','Bar Passage','Student Diversity','Faculty Diversity','Custom'])
 school_df = pandas.read_csv('Data_Files/School Information.csv')
 #schools = ['University of Hawaii','University of New Mexico']
