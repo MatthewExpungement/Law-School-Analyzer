@@ -43,14 +43,29 @@ def displayBarPassage(streamlit_tab,selected_schools):
 
 
     #UBP
-    streamlit_tab.subheader("Bar Passage")
-    col1,col2 = streamlit_tab.columns(2)
+    streamlit_tab.subheader("Ultimate Bar Passage")
+
     title = "Ultimate Bar Passage Percentage"
     ubp_fig = createSingleGraph(df,selected_schools,title,'UltimateSchoolPassPct','UltimateBarYear')
     title = "Difference in First Time Bar Pass Rate School vs State Average Percentage"
     state_diff = createSingleGraph(df,selected_schools,title,'avgpasspctdiff','Firsttimebaryear')
 
-    col1.plotly_chart(ubp_fig)
+    streamlit_tab.plotly_chart(ubp_fig)
+
+    
+    streamlit_tab.divider()
+
+
+    #UBP
+    df['avgschoolpasspct'] = df['avgschoolpasspct'] * 100
+    streamlit_tab.subheader("First Time Bar Passage")
+    col1,col2 = streamlit_tab.columns(2)
+    title = "First Time Bar Passage Percentage"
+    ftbp_fig = createSingleGraph(df,selected_schools,title,'avgschoolpasspct','Firsttimebaryear')
+    title = "Difference in First Time Bar Pass Rate School vs State Average Percentage"
+    state_diff = createSingleGraph(df,selected_schools,title,'avgpasspctdiff','Firsttimebaryear')
+
+    col1.plotly_chart(ftbp_fig)
     col2.plotly_chart(state_diff)
     col2.write("*Negative value means school pass percentage was less than state average.")
     
