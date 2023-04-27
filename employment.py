@@ -107,15 +107,28 @@ def displayEmployment(selected_tab,selected_schools):
     selected_tab.divider()
 
     #Employment Status
+    employment_status_dictionary = {
+        "Bar Passage Required":"Bar",
+        "JD Advantage":"JDA",
+        "Professional":"Prof",
+        "Non Professional":"Nprof",
+        "School Funded":"Funded",
+        "Undeterminable":"Undet",
+        "Grad School Full Time":"GradSch_FT",
+        "Employment Deferred":"Emp_Def",
+        "Unemployed Not Seeking":"Unemp_NS",
+        "Unemployed Seeking":"Unemp_Seek",
+        "Employment Status Unknown":"Emp_Stat_Unk"
+    }
     selected_tab.subheader("Employment Status Single School")
-    employment_status_choices = selected_tab.multiselect("Select Employment Status",employment_status,default=['Bar','JDA'])
+    employment_status_choices = selected_tab.multiselect("Select Employment Status",employment_status_dictionary.keys(),default=['Bar Passage Required','JD Advantage'])
     job_part_full_time_select = selected_tab.selectbox("Full Time Part Time Options",time_jobs_dictionary.keys(),key='Employment Status Single School',index=4)
     if(len(selected_schools) > 1):
         selected_tab.write("You can only have one school selected to use this chart")
     else:
         col1,col2 = selected_tab.columns(2)
         title = "Employment Status"
-        yaxis = [et + "_" + time_jobs_dictionary[job_part_full_time_select] for et in employment_status_choices]
+        yaxis = [employment_status_dictionary[et] + "_" + time_jobs_dictionary[job_part_full_time_select] for et in employment_status_choices]
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
         col1.plotly_chart(fig_graphs[0])
