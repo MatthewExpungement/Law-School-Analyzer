@@ -33,8 +33,8 @@ def displayAdmissions(streamlit_tab,selected_schools):
     lsat_fig = createSingleGraph(df,selected_schools,title,'LSAT50')
     title = "GPA Full Time + Part Time"
     gpa_fig = createSingleGraph(df,selected_schools,title,'UGGPA50')
-    col1.plotly_chart(lsat_fig)
-    col2.plotly_chart(gpa_fig)
+    col1.plotly_chart(lsat_fig,use_container_width=True)
+    col2.plotly_chart(gpa_fig,use_container_width=True)
 
     streamlit_tab.divider()
 
@@ -42,7 +42,7 @@ def displayAdmissions(streamlit_tab,selected_schools):
     streamlit_tab.subheader("Number of Applications")
     title = "Raw Number of Applications"
     number_of_apps_fig = createSingleGraph(df,selected_schools,title,'NumApps')
-    streamlit_tab.plotly_chart(number_of_apps_fig)
+    streamlit_tab.plotly_chart(number_of_apps_fig,use_container_width=True)
 
     streamlit_tab.divider()
 
@@ -52,8 +52,8 @@ def displayAdmissions(streamlit_tab,selected_schools):
     title = "Offers"
     yaxis = ['NumOffers','NumOffers_Percentage']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
     col2.write("*Percentage based on offers/total applications")
     
     streamlit_tab.divider()
@@ -64,13 +64,13 @@ def displayAdmissions(streamlit_tab,selected_schools):
     title = "Accepted Offers by Total Applications"
     yaxis = ['NumMatriculants','NumMatriculants_Percentage_Applications']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
     col2.write("*Percentage based on acceptance/total applications")
     title = "Accepted offers by Total Offers"
     yaxis = ['NumMatriculants','NumMatriculants_Percentage_Offers']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
     col2.write("*Percentage based on accpetance/total offers")
     

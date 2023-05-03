@@ -13,9 +13,19 @@ def createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis):
     #Bar Passage Full Time Long Term
     selected_schools_df = df.loc[df['schoolname'].isin(selected_schools)]
     fig_raw = px.line(selected_schools_df,x='Cohort',y=yaxis,title="Raw <br>" + title)
+    fig_raw.update_layout(
+        yaxis=dict(
+                title="Graduates"
+        ))
+    
     #Percentage Numbers
     yaxis_percent = [ax + "_Percentage" for ax in yaxis]
     fig_percentage = px.line(selected_schools_df,x='Cohort',y=yaxis_percent,title="Percentage <br>" + title)
+    fig_percentage.update_layout(
+        yaxis=dict(
+                title="Percentage of Graduates"
+        ))
+
     return [fig_raw,fig_percentage]
 
 def displayEmployment(selected_tab,selected_schools):
@@ -87,8 +97,8 @@ def displayEmployment(selected_tab,selected_schools):
     yaxis = ['Bar_' + time_jobs_dictionary[job_part_full_time_select],'Bar_' + time_jobs_dictionary[job_part_full_time_select]+'_Percentage']
     #yaxis = ['Bar_FTLT','Bar_FTLT_Percentage']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
 
     selected_tab.divider()
 
@@ -101,8 +111,8 @@ def displayEmployment(selected_tab,selected_schools):
     yaxis = ['Bar_And_JD_Advantage_' + time_jobs_dictionary[job_part_full_time_select],'Bar_And_JD_Advantage_' + time_jobs_dictionary[job_part_full_time_select]+'_Percentage']
 
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
 
     selected_tab.divider()
 
@@ -131,8 +141,8 @@ def displayEmployment(selected_tab,selected_schools):
         yaxis = [employment_status_dictionary[et] + "_" + time_jobs_dictionary[job_part_full_time_select] for et in employment_status_choices]
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)
 
     selected_tab.divider()
 
@@ -146,8 +156,8 @@ def displayEmployment(selected_tab,selected_schools):
     #yaxis = ['Private_Law_Firm_Total','Private_Law_Firm_Total_Percentage']
     yaxis = ['Private_Law_Firm_Total_'+time_jobs_dictionary[job_part_full_time_select],'Private_Law_Firm_Total_'+time_jobs_dictionary[job_part_full_time_select]+'_Percentage']
     fig_graphs = createRawAndPercentGraph(df,selected_schools,title,yaxis)
-    col1.plotly_chart(fig_graphs[0])
-    col2.plotly_chart(fig_graphs[1])
+    col1.plotly_chart(fig_graphs[0],use_container_width=True)
+    col2.plotly_chart(fig_graphs[1],use_container_width=True)
     col2.write("*Percentage is based on total employment")
 
     selected_tab.divider()
@@ -166,8 +176,8 @@ def displayEmployment(selected_tab,selected_schools):
             #print(pf+"_"+job_part_full_time_select)
             yaxis.append(pf+"_"+time_jobs_dictionary[job_part_full_time_select])
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)
         col2.write("*Percentage is based on total people employed in private law firms.")
 
     selected_tab.divider()
@@ -186,5 +196,5 @@ def displayEmployment(selected_tab,selected_schools):
         yaxis = [et + "_" + time_jobs_dictionary[job_part_full_time_select] for et in employment_type_choices]
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)

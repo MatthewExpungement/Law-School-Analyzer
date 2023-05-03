@@ -14,9 +14,17 @@ def createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis):
     #Bar Passage Full Time Long Term
     selected_schools_df = df.loc[df['schoolname'].isin(selected_schools)]
     fig_raw = px.line(selected_schools_df,x='CalendarYear',y=yaxis,title="Raw <br>" + title)
+    fig_raw.update_layout(
+        yaxis=dict(
+                title="Students"
+        ))
     #Percentage Numbers
     yaxis_percent = [ax + "_Percentage" for ax in yaxis]
     fig_percentage = px.line(selected_schools_df,x='CalendarYear',y=yaxis_percent,title="Percentage <br>" + title)
+    fig_percentage.update_layout(
+        yaxis=dict(
+                title="Percentage of Students"
+        ))
     return [fig_raw,fig_percentage]
 
 def displayDiversity(streamlit_tab,selected_schools):
@@ -53,8 +61,8 @@ def displayDiversity(streamlit_tab,selected_schools):
         yaxis = race_choices
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)
 
     #Incoming Class by Gender - Single School
     streamlit_tab.subheader("Student Diversity Incoming Class (Gender)")
@@ -66,8 +74,8 @@ def displayDiversity(streamlit_tab,selected_schools):
         yaxis = genders
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)
 
     #Incoming Class by Race and Gender - Single School
     streamlit_tab.subheader("Student Diversity Incoming Class (Race + Gender)")
@@ -80,5 +88,5 @@ def displayDiversity(streamlit_tab,selected_schools):
         yaxis = race_gender_choices
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
-        col1.plotly_chart(fig_graphs[0])
-        col2.plotly_chart(fig_graphs[1])
+        col1.plotly_chart(fig_graphs[0],use_container_width=True)
+        col2.plotly_chart(fig_graphs[1],use_container_width=True)
