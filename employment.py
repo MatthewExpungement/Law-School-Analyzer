@@ -53,7 +53,7 @@ def displayEmployment(selected_tab,selected_schools):
     part_time_full_time_types = ["FTLT","FTST","PTLT","PTST","Emp"]
     df['IntlClk_Emp'] = df['IntlClk']
     df['TribalClk_Emp'] = df['TribalClk']
-    df['IntlClk_PTLT'] = df['IntlClkl_PTLT'] #Addresses weird typo in dataset
+    df['IntlClk_PTLT'] = df['IntlClk_PTLT'] # This used to be "IntlClkl_PTLT" but they have sent fixed it.
 
     #Add Employed Status
     for ptft in part_time_full_time_types:

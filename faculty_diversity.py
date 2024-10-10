@@ -33,19 +33,19 @@ def displayFacultyDiversity(streamlit_tab,selected_schools):
     df = pandas.read_csv('Data_Files/Faculty (Academic Year).csv')
 
 
-
+    #In the latest data dump AccessLex has changed FacOther to "FacAGI" standing for another gender.
     #Calculate Percentages for Faculty by Gender
     df["FacMen_Percentage"] = df["FacMen"]/df['FacTotal'] * 100
     df["FacWomen_Percentage"] = df["FacWomen"]/df['FacTotal'] * 100
-    df["FacOther_Percentage"] = df["FacOther"]/df['FacTotal'] * 100
+    df["FacAGI_Percentage"] = df["FacAGI"]/df['FacTotal'] * 100
 
     #Calculate Percentages for Faculty by Gender and Full Time/Part Time
     df["FTFacMen_Percentage"] = df["FTFacMen"]/df['FacTotal'] * 100
     df["FTFacWomen_Percentage"] = df["FTFacWomen"]/df['FacTotal'] * 100
-    df["FTFacOther_Percentage"] = df["FTFacOther"]/df['FacTotal'] * 100
+    df["FTFacAGI_Percentage"] = df["FTFacAGI"]/df['FacTotal'] * 100
     df["NonFTFacMen_Percentage"] = df["NonFTFacMen"]/df['FacTotal'] * 100
     df["NonFTFacWomen_Percentage"] = df["NonFTFacWomen"]/df['FacTotal'] * 100
-    df["NonFTFacOther_Percentage"] = df["NonFTFacOther"]/df['FacTotal'] * 100
+    df["NonFTFacAGI_Percentage"] = df["NonFTFacAGI"]/df['FacTotal'] * 100
 
 
 
@@ -63,7 +63,7 @@ def displayFacultyDiversity(streamlit_tab,selected_schools):
     else:
         col1,col2 = streamlit_tab.columns(2)
         title = "Faculty Diversity by Gender"
-        yaxis = ["FacMen","FacWomen","FacOther"]
+        yaxis = ["FacMen","FacWomen","FacAGI"]
 
         fig_graphs = createRawAndPercentGraphSingleSchool(df,selected_schools,title,yaxis)
         col1.plotly_chart(fig_graphs[0],use_container_width=True)
@@ -73,7 +73,7 @@ def displayFacultyDiversity(streamlit_tab,selected_schools):
     
     #Incoming Class by Race and Gender - Single School
     streamlit_tab.subheader("Faculty Diversity By Gender and Full Time/Part Time")
-    ft_non_ft = ["FTFacMen","FTFacWomen","FTFacOther","NonFTFacMen","NonFTFacWomen","NonFTFacOther"]
+    ft_non_ft = ["FTFacMen","FTFacWomen","FTFacAGI","NonFTFacMen","NonFTFacWomen","NonFTFacAGI"]
     race_gender_choices = streamlit_tab.multiselect("Select Race and Gender",ft_non_ft,default=['FTFacMen','NonFTFacMen'])
     if(len(selected_schools) > 1):
         streamlit_tab.write("You can only have one school selected to use this chart")
