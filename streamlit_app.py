@@ -12,7 +12,7 @@ st.set_page_config(layout='wide')
 st.header("Law School Analyzer")
 st.write("By Matthew Stubenberg")
 st.write("Innovator in Residence - University of Hawaii William S. Richardson School of Law")
-st.write("Data sourced from Access Lex at https://analytix.accesslex.org/download-dataset. Last updated October 2024")
+st.write("Data sourced from Access Lex at https://analytix.accesslex.org/download-dataset. Last updated March 2025")
 admissions_tab,employment_tab,bar_passage_tab,diversity_tab,faculty_tab,custom_tab = st.tabs([
     '📊 Admissions',
     '💼 Employment',
