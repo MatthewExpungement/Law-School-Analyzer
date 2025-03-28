@@ -13,7 +13,14 @@ st.header("Law School Analyzer")
 st.write("By Matthew Stubenberg")
 st.write("Innovator in Residence - University of Hawaii William S. Richardson School of Law")
 st.write("Data sourced from Access Lex at https://analytix.accesslex.org/download-dataset. Last updated October 2024")
-admissions_tab,employment_tab,bar_passage_tab,diversity_tab,faculty_tab,custom_tab = st.tabs(['Admissions','Employment','Bar Passage','Student Diversity','Faculty Diversity','Custom'])
+admissions_tab,employment_tab,bar_passage_tab,diversity_tab,faculty_tab,custom_tab = st.tabs([
+    '📊 Admissions',
+    '💼 Employment',
+    '⚖️ Bar Passage',
+    '👨‍👩‍👧‍👦 Student Diversity',
+    '👩‍🏫 Faculty Diversity',
+    '🔍 Custom'
+])
 school_df = pandas.read_csv('Data_Files/School Information.csv')
 #schools = ['University of Hawaii','University of New Mexico']
 schools = school_df['schoolname'].sort_values()
